@@ -100,7 +100,7 @@ img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR) # change color mod(from gray to rgb)
 cv2.line(img, (0, 0), (600, 600), (255, 0, 0), 5)
 cv2.rectangle(img, (200, 200), (400, 400), (0, 255, 255), cv2.FILLED)
 cv2.circle(img, (500,500), 50, (0, 0, 255), 5)
-cv2.putText(img, 'Wayne', (100,100), cv2.FONT_HERSHEY_SIMPLEX, 5, (0, 255, 0), 3) #do not use chinese
+cv2.putText(img, 'Wayne', (100,100), cv2.FONT_HERSHEY_SIMPLEX, 5, (0, 255, 0), 3) # Text only use english
 
 cv2.imshow('img', img)
 cv2.waitKey(0)
