@@ -1,7 +1,9 @@
 from calendar import c
+from turtle import delay
 from cv2 import dilate
 import cv2
 import numpy as np
+import time
 """
 ///picture process///
 
@@ -191,4 +193,44 @@ cv2.imshow('Contours', Contours)
 cv2.waitKey(0)
 """
 
+
+"""
+face detection
+
+img = cv2.imread('pic\\pic8.jpg')
+img = cv2.resize(img, (0, 0), fx=0.5, fy=0.5)
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+face = cv2.CascadeClassifier('face_detected.xml')
+faceRect = face.detectMultiScale(gray, 1.1, 1)
+print(len(faceRect))
+
+for(x, y, w, h) in faceRect:
+    cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+cv2.imshow('img', img)
+cv2.waitKey(0)
+"""
+video  = cv2.VideoCapture(0)
+
+while True:
+    bol, frame = video.read()
+    if bol:
+        frame = cv2.resize(frame, (0, 0), fx=1, fy=1)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+        face = cv2.CascadeClassifier('face_detected.xml')
+        faceRect = face.detectMultiScale(gray, 1.1, 7)
+        print(faceRect)
+        print(len(faceRect))
+
+        for(x, y, w, h) in faceRect:
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)  
+            cv2.imshow('display video', frame)
+    else:
+        break
+    if cv2.waitKey(10) == ord('s'):
+        break
+
+    
+    
 
