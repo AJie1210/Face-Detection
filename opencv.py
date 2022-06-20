@@ -3,7 +3,7 @@ from cv2 import dilate
 import cv2
 import numpy as np
 """
-picture process
+///picture process///
 
 img = cv2.imread('pic\\pic1.jpg')
 
@@ -13,7 +13,7 @@ cv2.waitKey(2000)
 """
 
 """
-video process
+///video process///
 
 video  = cv2.VideoCapture('video\\Ivyyy.mp4')
 
@@ -29,7 +29,7 @@ while True:
 """
 
 """
-video(live) process
+///video(live) process///
 
 video  = cv2.VideoCapture(0)
 
@@ -45,7 +45,7 @@ while True:
 """
 
 """
-create graph with [B, G, R]
+///create graph with [B, G, R]///
 
 img = np.empty((500, 500, 3), np.uint8)
 
@@ -58,7 +58,7 @@ cv2.waitKey(0)
 """
 
 """
-cut picture
+///cut picture///
 
 img = cv2.imread('pic\\pic1.jpg')
 newimg = img[:150, 200:800]
@@ -70,7 +70,7 @@ cv2.waitKey(0)
 """
 
 """
-graph function
+///graph function///
 
 kernal = np.ones((3, 3), np.uint8) # for dilate
 kernal1 = np.ones((3, 3), np.uint8) # for erode
@@ -95,7 +95,7 @@ cv2.waitKey(0)
 """
 
 """
-make line, rectangle, circle, text
+///make line, rectangle, circle, text///
 
 img = np.full((600, 600), 255, np.uint8) # create a new image(white:255) 
 img = cv2.cvtColor(img, cv2.COLOR_GRAY2BGR) # change color mod(from gray to rgb)
@@ -110,6 +110,8 @@ cv2.waitKey(0)
 """
 
 """
+///COLOR DETECTION///
+
 def empty(v):
     pass
 
@@ -150,5 +152,43 @@ while True:
     cv2.waitKey(1)
 """
 
+"""
+///contours detection and identification///
+
+img = cv2.imread('pic\\pic5.jpg')
+Contours = img.copy()
+
+cv2.cvtColor(img, cv2.COLOR_BGR2BGRA)
+canny = cv2.Canny(img, 100,200)
+contours, hierarchy = cv2.findContours(canny, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE) # find the contours and hierarchy
+
+for cnt in contours:
+    cv2.drawContours(Contours, cnt, -1, (0, 0, 255), 3) # Draw contours
+    area = cv2.contourArea(cnt) # contours's area
+    print(area)
+
+    if area > 200:
+        #print(cv2.arcLength(cnt, True)) # contours's length
+        peri = cv2.arcLength(cnt, True) # contours's length
+        vertices = cv2.approxPolyDP(cnt, peri*0.02, True) # polygon's vertices
+        corners = len(vertices) # number of corners
+        #print(vertices)
+        x, y, w, h = cv2.boundingRect(vertices) # get rectangle information
+        cv2.rectangle(Contours, (x, y), (x+w, y+h), (0, 255, 0), 4) # Draw rectangle on Contours
+
+        if corners == 3:
+            cv2.putText(Contours, 'triangle', (x, y-5), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0),2)
+        elif corners == 4:
+            cv2.putText(Contours, 'rectangle', (x, y-5), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0),2)
+        elif corners == 5:
+            cv2.putText(Contours, 'pentagon', (x, y-5), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0),2)
+        elif corners >= 6:
+            cv2.putText(Contours, 'circle', (x, y-5), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0),2)
+
+cv2.imshow('img', img)
+cv2.imshow('canny', canny)
+cv2.imshow('Contours', Contours)
+cv2.waitKey(0)
+"""
 
 
