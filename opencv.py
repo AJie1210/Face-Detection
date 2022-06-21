@@ -1,9 +1,7 @@
-from calendar import c
 from turtle import delay
 from cv2 import dilate
 import cv2
 import numpy as np
-import time
 """
 ///picture process///
 
