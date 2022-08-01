@@ -28,3 +28,11 @@ Face detection
         count = count + 1
     }
 }
+Create Canvas
+{
+    Canvas = numpy.ones | zeros((height, width, 3#BGR | 1#GRAY), numpy.uint8)
+    numpy.ones #陣列元素初值 = 1 numpy.zeros #陣列元素初值 = 0
+    numpy.uint8 #8bit integer
+
+    Canvas[:] = (B, G, R) #畫布顏色
+}
