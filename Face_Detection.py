@@ -1,9 +1,5 @@
-from xml.etree.ElementInclude import FatalIncludeError
-from cv2 import minEnclosingCircle
-
-from matplotlib.pyplot import sca
 import cv2
-import numpy
+
 
 #臉部偵測
 case_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
