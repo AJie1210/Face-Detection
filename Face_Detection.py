@@ -9,7 +9,7 @@ import numpy
 case_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
 faceDetected = cv2.CascadeClassifier(case_path)
 
-image = cv2.imread('pic\\pic6.jpg')
+image = cv2.imread('pic\\pic7.jpg')
 image = cv2.resize(image, (0, 0), fx=0.5, fy=0.5)
 image_face = faceDetected.detectMultiScale(image, scaleFactor = 1.1, minNeighbors = 2, minSize = (30, 30), flags = cv2.CASCADE_SCALE_IMAGE)
 

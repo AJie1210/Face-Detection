@@ -1,5 +1,4 @@
 import cv2
-import numpy
 
 """cv2.namedWindow("Image_1", flags=cv2.WINDOW_FREERATIO)"""
 img_1 = cv2.imread('pic\\pic1.jpg')
