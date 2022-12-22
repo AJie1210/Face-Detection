@@ -6,7 +6,7 @@ faceDetected = cv2.CascadeClassifier(case_path)
 
 image = cv2.imread('pic\\pic1.jpg')
 image = cv2.resize(image, (0, 0), fx=0.5, fy=0.5)
-image_face = faceDetected.detectMultiScale(image, scaleFactor = 1.1, minNeighbors = 2, minSize = (30, 30), flags = cv2.CASCADE_SCALE_IMAGE)
+image_face = faceDetected.detectMultiScale(image, scaleFactor = 1.1, minNeighbors = 3, minSize = (30, 30), flags = cv2.CASCADE_SCALE_IMAGE)
 
 #顯示臉部偵測數量
 image_height = image.shape[0]
