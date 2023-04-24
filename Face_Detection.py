@@ -1,5 +1,5 @@
 import cv2
-
+"""
 #臉部偵測
 case_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
 faceDetected = cv2.CascadeClassifier(case_path)
@@ -27,3 +27,16 @@ for(x, y, w, h) in image_face:
 cv2.imshow("Facedetected", image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+"""
+
+video  = cv2.VideoCapture(1)
+
+while True:
+    bol, frame = video.read()
+    if bol:
+        frame = cv2.resize(frame, (0, 0), fx=1, fy=1)
+        cv2.imshow('display video', frame)
+    else:
+        break
+    if cv2.waitKey(10) == ord('s'):
+        break
