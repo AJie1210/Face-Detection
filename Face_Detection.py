@@ -29,7 +29,7 @@ cv2.waitKey(0)
 cv2.destroyAllWindows()
 """
 
-video  = cv2.VideoCapture(1)
+video  = cv2.VideoCapture(0)
 
 while True:
     bol, frame = video.read()
