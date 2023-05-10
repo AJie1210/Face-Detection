@@ -1,11 +1,11 @@
 import cv2
-"""
+
 #臉部偵測
 case_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
 faceDetected = cv2.CascadeClassifier(case_path)
 
 image = cv2.imread('pic\\pic1.jpg')
-image = cv2.resize(image, (800, 800))
+image = cv2.resize(image, (0, 0), fx=0.5, fy=0.5)
 image_face = faceDetected.detectMultiScale(image, scaleFactor = 1.1, minNeighbors = 3, minSize = (30, 30), flags = cv2.CASCADE_SCALE_IMAGE)
 
 #顯示臉部偵測數量
@@ -28,7 +28,6 @@ cv2.imshow("Facedetected", image)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 """
-
 video  = cv2.VideoCapture(0)
 
 while True:
@@ -40,3 +39,4 @@ while True:
         break
     if cv2.waitKey(10) == ord('s'):
         break
+"""
