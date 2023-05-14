@@ -1,42 +1,21 @@
 import cv2
 
-#臉部偵測
-case_path = cv2.data.haarcascades + "haarcascade_frontalface_default.xml"
-faceDetected = cv2.CascadeClassifier(case_path)
-
-image = cv2.imread('pic\\pic1.jpg')
-image = cv2.resize(image, (0, 0), fx=0.5, fy=0.5)
-image_face = faceDetected.detectMultiScale(image, scaleFactor = 1.1, minNeighbors = 3, minSize = (30, 30), flags = cv2.CASCADE_SCALE_IMAGE)
-
-#顯示臉部偵測數量
-image_height = image.shape[0]
-image_width = image.shape[1]
-cv2.putText(image, "Found " + str(len(image_face)) + " face !", (10, image_height-5), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
-
-#框選臉部
-count = 1
-for(x, y, w, h) in image_face:
-    cv2.rectangle(image, (x, y), (x+w, y+h),(128, 255 , 0), 2)
-    #擷取臉部
-    filename = "pic_copy\\image_" + str(count) + ".jpg"
-    image1 = image[y: y + h, x: x + w]
-    image1 = cv2.resize(image1, (400, 400))
-    cv2.imwrite(filename, image1)
-    count = count + 1
-
-cv2.imshow("Facedetected", image)
-cv2.waitKey(0)
-cv2.destroyAllWindows()
-"""
-video  = cv2.VideoCapture(0)
+video  = cv2.VideoCapture(1)
 
 while True:
-    bol, frame = video.read()
+    bol, frame = video.read() # bol：是否成功讀取影像 frame：讀取到的影像
     if bol:
-        frame = cv2.resize(frame, (0, 0), fx=1, fy=1)
-        cv2.imshow('display video', frame)
+        frame = cv2.resize(frame, (0, 0), fx=1, fy=1) # 重新縮放影像大小
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY) # 將影像由BGR轉為灰階
+        face = cv2.CascadeClassifier('face_detected.xml') # 導入臉部偵測模型
+        faceRect = face.detectMultiScale(gray, 1.1, 7) # 開始進行臉部偵測（偵測圖片、縮小倍數、最低臉部偵測數量）
+        print(faceRect)
+        print(len(faceRect))
+
+        for(x, y, w, h) in faceRect: # 臉部匡選
+            cv2.rectangle(frame, (x, y), (x+w, y+h), (0, 255, 0), 2)  
+            cv2.imshow('display video', frame)
     else:
         break
     if cv2.waitKey(10) == ord('s'):
         break
-"""
