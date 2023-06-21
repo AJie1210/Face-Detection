@@ -23,8 +23,8 @@ while True:
     img = cv2.flip(img,1)
     gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     (thresh, black_and_white) = cv2.threshold(gray, bw_threshold, 255, cv2.THRESH_BINARY)
-    faces = face_cascade.detectMultiScale(gray, 1.1, 6)
-    faces_bw = face_cascade.detectMultiScale(black_and_white, 1.1, 6)
+    faces = face_cascade.detectMultiScale(gray, 1.1, 4)
+    faces_bw = face_cascade.detectMultiScale(black_and_white, 1.1, 4)
     if(len(faces) == 0 and len(faces_bw) == 0):
         cv2.putText(img, "No face found...", org, font, font_scale, noface, thickness, cv2.LINE_AA)
     elif(len(faces) == 0 and len(faces_bw) == 1):
@@ -34,7 +34,7 @@ while True:
             cv2.rectangle(img, (x, y), (x + w, y + h), (255, 255, 255), 2)
             roi_gray = gray[y:y + h, x:x + w]
             roi_color = img[y:y + h, x:x + w]
-            mouth_rects = mouth_cascade.detectMultiScale(gray, 1.5, 6)
+            mouth_rects = mouth_cascade.detectMultiScale(gray, 1.5, 4)
         if(len(mouth_rects) == 0):
             cv2.putText(img, weared_mask, org, font, font_scale, weared_mask_font_color, thickness, cv2.LINE_AA)
         else:
