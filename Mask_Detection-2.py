@@ -14,8 +14,8 @@ not_weared_mask_font_color = (0, 0, 255)
 noface = (255, 255, 255)
 thickness = 2
 font_scale = 1
-weared_mask = "Thank You for wearing MASK"
-not_weared_mask = "Please wear MASK to defeat Corona"
+weared_mask = "已配戴口罩"
+not_weared_mask = "請配戴口罩"
 
 cap = cv2.VideoCapture(1)
 while True:
