@@ -4,7 +4,7 @@ import cv2 as cv
 detector = dlib.get_frontal_face_detector()
 
 color = ('b','g','r')
-cap = cv.VideoCapture(1)
+cap = cv.VideoCapture(0)
 cap.set(cv.CAP_PROP_FRAME_WIDTH, 650)
 cap.set(cv.CAP_PROP_FRAME_HEIGHT, 500)
 
